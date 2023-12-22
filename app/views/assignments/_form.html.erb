@@ -1,0 +1,30 @@
+<%= form_with(model: assignment) do |form| %>
+<% if assignment.errors.any? %>
+<div id="error_explanation" class="bg-red-50 p-6 rounded text-red-800">
+  <h2 class="text-lg font-semibold mb-3"><%= pluralize(assignment.errors.count, "error") %> prohibited this assignment from being saved:</h2>
+
+  <ul class="list-disc leading-relaxed">
+    <% assignment.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+  <div class="mb-6">
+        <%= form.label :task_id, class: label_class %>
+          <%= form.text_field :task_id, class: input_class %>
+      </div>
+  <div class="mb-6">
+        <%= form.label :account_id, class: label_class %>
+          <%= form.text_field :account_id, class: input_class %>
+      </div>
+
+<%= form.submit class: button_class(theme: 'primary') %>
+
+<% if assignment.persisted? %>
+<%= link_to "Cancel", assignment, class: "text-neutral-700 underline inline-block ml-3" %>
+<% else %>
+<%= link_to "Cancel", assignments_path, class:  "text-neutral-700 underline inline-block ml-3" %>
+<% end %>
+<% end %>

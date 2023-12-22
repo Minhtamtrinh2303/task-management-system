@@ -10,9 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_08_130018) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_22_205509) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.string "username"
+    t.string "email"
+    t.string "password"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -52,6 +60,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_130018) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "assignments", force: :cascade do |t|
+    t.bigint "task_id", null: false
+    t.bigint "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_assignments_on_account_id"
+    t.index ["task_id"], name: "index_assignments_on_task_id"
+  end
+
+  create_table "file_attachments", force: :cascade do |t|
+    t.bigint "task_id", null: false
+    t.string "file_name"
+    t.string "file_path"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_file_attachments_on_task_id"
+  end
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -61,6 +87,67 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_130018) do
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "project_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.string "report_name"
+    t.text "parameters"
+    t.bigint "task_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_reports_on_task_id"
+  end
+
+  create_table "task_statuses", force: :cascade do |t|
+    t.string "status_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.date "due_date"
+    t.boolean "priority"
+    t.string "status"
+    t.date "completed_date"
+    t.datetime "reminder_time"
+    t.bigint "project_id", null: false
+    t.bigint "task_status_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_tasks_on_project_id"
+    t.index ["task_status_id"], name: "index_tasks_on_task_status_id"
+  end
+
+  create_table "team_memberships", force: :cascade do |t|
+    t.bigint "team_id", null: false
+    t.bigint "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_team_memberships_on_account_id"
+    t.index ["team_id"], name: "index_team_memberships_on_team_id"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "team_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "time_trackings", force: :cascade do |t|
+    t.bigint "task_id", null: false
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_time_trackings_on_task_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -80,4 +167,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_130018) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "assignments", "accounts"
+  add_foreign_key "assignments", "tasks"
+  add_foreign_key "file_attachments", "tasks"
+  add_foreign_key "reports", "tasks"
+  add_foreign_key "tasks", "projects"
+  add_foreign_key "tasks", "task_statuses"
+  add_foreign_key "team_memberships", "accounts"
+  add_foreign_key "team_memberships", "teams"
+  add_foreign_key "time_trackings", "tasks"
 end

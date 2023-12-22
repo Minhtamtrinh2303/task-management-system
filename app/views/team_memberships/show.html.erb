@@ -1,0 +1,25 @@
+<div class="max-w-3xl mx-auto px-4">
+  <div class="flex items-center justify-between">
+    <h1 class="flex-1 font-bold text-3xl">Team_membership</h1>
+
+    <div class="flex-wrap lg:flex items-center lg:space-x-3">
+      <%= link_to team_memberships_path, class: button_class(theme: "transparent") do %>
+      All Team_memberships
+      <% end %>
+      <%= link_to edit_team_membership_path(@team_membership), class: button_class(theme:"primary") do %>
+      Edit
+      <% end %>
+    </div>
+  </div>
+
+  <ul class="text-slate-700">
+      <li>
+        <p class="font-semibold">Team:</p>
+        <p><%= @team_membership.team %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Account:</p>
+        <p><%= @team_membership.account %></p>
+      </li>
+  </ul>
+</div>

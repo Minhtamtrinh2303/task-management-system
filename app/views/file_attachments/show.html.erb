@@ -1,0 +1,29 @@
+<div class="max-w-3xl mx-auto px-4">
+  <div class="flex items-center justify-between">
+    <h1 class="flex-1 font-bold text-3xl">File_attachment</h1>
+
+    <div class="flex-wrap lg:flex items-center lg:space-x-3">
+      <%= link_to file_attachments_path, class: button_class(theme: "transparent") do %>
+      All File_attachments
+      <% end %>
+      <%= link_to edit_file_attachment_path(@file_attachment), class: button_class(theme:"primary") do %>
+      Edit
+      <% end %>
+    </div>
+  </div>
+
+  <ul class="text-slate-700">
+      <li>
+        <p class="font-semibold">Task:</p>
+        <p><%= @file_attachment.task %></p>
+      </li>
+      <li>
+        <p class="font-semibold">File name:</p>
+        <p><%= @file_attachment.file_name %></p>
+      </li>
+      <li>
+        <p class="font-semibold">File path:</p>
+        <p><%= @file_attachment.file_path %></p>
+      </li>
+  </ul>
+</div>

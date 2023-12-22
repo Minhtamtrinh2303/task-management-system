@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  task: one
+  start_time: 2023-12-22 20:33:27
+  end_time: 2023-12-22 20:33:27
+
+two:
+  task: two
+  start_time: 2023-12-22 20:33:27
+  end_time: 2023-12-22 20:33:27

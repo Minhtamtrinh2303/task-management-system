@@ -1,0 +1,30 @@
+<%= form_with(model: team_membership) do |form| %>
+<% if team_membership.errors.any? %>
+<div id="error_explanation" class="bg-red-50 p-6 rounded text-red-800">
+  <h2 class="text-lg font-semibold mb-3"><%= pluralize(team_membership.errors.count, "error") %> prohibited this team_membership from being saved:</h2>
+
+  <ul class="list-disc leading-relaxed">
+    <% team_membership.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+  <div class="mb-6">
+        <%= form.label :team_id, class: label_class %>
+          <%= form.text_field :team_id, class: input_class %>
+      </div>
+  <div class="mb-6">
+        <%= form.label :account_id, class: label_class %>
+          <%= form.text_field :account_id, class: input_class %>
+      </div>
+
+<%= form.submit class: button_class(theme: 'primary') %>
+
+<% if team_membership.persisted? %>
+<%= link_to "Cancel", team_membership, class: "text-neutral-700 underline inline-block ml-3" %>
+<% else %>
+<%= link_to "Cancel", team_memberships_path, class:  "text-neutral-700 underline inline-block ml-3" %>
+<% end %>
+<% end %>

@@ -1,11 +1,11 @@
 # README
 
-## GROUP <add-group-name>
+## GROUP 8: TASK MANAGEMENT SYSTEM
 
-- Member 1: <add-name>
-- Member 2: <add-name>
-- Member 3: <add-name>
-- Member 4: <add-name>
+- Member 1: Trinh Minh Tam - 22070597
+- Member 2: Tran Thu Hien - 22070560
+- Member 3: Le Thi Xuan Hao - 22070362
+- Member 4: Vu Thi Thu Huong - 21070575
 
 ## Starting server
 

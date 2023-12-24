@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :tasks
   resources :task_statuses
   resources :projects
+
   authenticate :user, ->(u) { u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end
@@ -29,5 +30,5 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  root "home#index"
+  root "accounts#index"
 end

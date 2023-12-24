@@ -28,7 +28,7 @@
       <%= content_tag :tr, id: dom_id(file_attachment), class: dom_class(file_attachment) do %>
       
 
-              <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><%= file_attachment.task %></td>
+              <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><%= file_attachment.task.name %></td>
               <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><%= file_attachment.file_name %></td>
               <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><%= file_attachment.file_path %></td>
       

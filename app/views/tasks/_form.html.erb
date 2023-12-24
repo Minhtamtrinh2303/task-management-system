@@ -41,11 +41,11 @@
       </div>
   <div class="mb-6">
         <%= form.label :project_id, class: label_class %>
-          <%= form.text_field :project_id, class: input_class %>
+          <%= form.select :project_id, options_from_collection_for_select( Project.all, 'id', 'name', selected = task.project_id), class: label_class %>
       </div>
   <div class="mb-6">
         <%= form.label :task_status_id, class: label_class %>
-          <%= form.text_field :task_status_id, class: input_class %>
+          <%= form.select :task_status_id, options_from_collection_for_select( TaskStatus.all, 'id', 'name', selected = task.task_status_id), class: label_class %>
       </div>
 
 <%= form.submit class: button_class(theme: 'primary') %>

@@ -12,5 +12,11 @@
     <main class="flex-grow">
       <%= content_for?(:content) ? yield(:content) : yield %>
     </main>
+
+    <head>
+      <%= favicon_link_tag asset_path('favicon.ico')%>
+    </head>
+
+
   </body>
 </html>

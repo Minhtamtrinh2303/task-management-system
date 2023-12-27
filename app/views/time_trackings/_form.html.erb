@@ -13,7 +13,7 @@
 
   <div class="mb-6">
         <%= form.label :task_id, class: label_class %>
-          <%= form.select :task_id, options_from_collection_for_select( Task.all, 'id', 'name', selected = time_tracking.task_id), class: label_class %>
+          <%= form.select :task_id, options_from_collection_for_select( Task.all, 'id', 'title', selected = time_tracking.task_id), class: label_class %>
       </div>
   <div class="mb-6">
         <%= form.label :start_time, class: label_class %>

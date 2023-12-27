@@ -1,5 +1,5 @@
 class Report < ApplicationRecord
-  has_many :tasks
+  belongs_to :task
 
   # Validation for ReportName
   validates_presence_of :report_name

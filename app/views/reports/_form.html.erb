@@ -21,7 +21,7 @@
       </div>
   <div class="mb-6">
         <%= form.label :task_id, class: label_class %>
-          <%= form.select :task_id, options_from_collection_for_select( Task.all, 'id', 'name', selected = report.task_id), class: label_class %>
+          <%= form.select :task_id, options_from_collection_for_select( Task.all, 'id', 'title', selected = report.task_id), class: label_class %>
       </div>
 
 <%= form.submit class: button_class(theme: 'primary') %>
